@@ -1,0 +1,7 @@
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_PWR_MGMT_1, PWR_MGMT_1_RESET);//Resets the power management register of the MPU
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, SIGNAL_PATH_RESET, SIGNAL_PATH_RESET_ALL);// Resets the signal paths to each sensor
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_ACCEL_CONFIG, ACCEL_RANGE_8);//Sets the accelerometer range to be 8g
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_GYRO_CONFIG, GYRO_RANGE_500);//Sets the gyroscope range to be 500 deg/s
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_CONFIG, FILTER_BANDWIDTH_21HZ);// Sets the DLPF filters bandwidth to 21Hz
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_PWR_MGMT_1, PWR_MGMT_1_WAKE);// Wakes the MPU from low power sleep
+fwScheduleTask(1);//schedules the next execution task
