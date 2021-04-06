@@ -46,7 +46,7 @@ enum NodeRadioOperationStatus {
 /* Initializes the NodeRadioTask and creates all TI-RTOS objects */
 void NodeRadioTask_init(void);
 
-/* Sends an ADC value to the concentrator */
-enum NodeRadioOperationStatus NodeRadioTask_sendMPU6050Data(int16_t data[3]);
+/* Sends an array of sensor values to the concentrator */
+enum NodeRadioOperationStatus NodeRadioTask_sendMPU6050Data(int16_t data[6]);
 
 #endif /* TASKS_NODERADIOTASKTASK_H_ */
