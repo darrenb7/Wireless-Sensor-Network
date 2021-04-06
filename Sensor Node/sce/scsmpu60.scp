@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MPU6050 for CC2650" version="2.8.0.170">
+    <desc><![CDATA[]]></desc>
+    <pattr name="Apply default power mode">0</pattr>
+    <pattr name="Board">None</pattr>
+    <pattr name="Chip name">CC2650</pattr>
+    <pattr name="Chip package">QFN48 7x7 RGZ</pattr>
+    <pattr name="Chip revision">-</pattr>
+    <pattr name="Clock in active mode">0</pattr>
+    <pattr name="Code prefix"></pattr>
+    <pattr name="Default power mode">0</pattr>
+    <pattr name="Operating system">TI-RTOS</pattr>
+    <pattr name="Output directory">.</pattr>
+    <pattr name="RTC tick interval (16.16 format)">2000</pattr>
+    <pattr name="Run-time logging UART RX pin"></pattr>
+    <pattr name="Run-time logging UART TX pin"></pattr>
+    <task name="MPU6050 Sample">
+        <desc><![CDATA[]]></desc>
+        <tattr name="ACCEL_RANGE_8" type="expr_hex" content="const" scope="task" min="0" max="65535">0x10</tattr>
+        <tattr name="ACCEL_XH_OUT" type="expr_hex" content="const" scope="task" min="0" max="65535">0x3B</tattr>
+        <tattr name="ACCEL_XL_OUT" type="expr_hex" content="const" scope="task" min="0" max="65535">0x3C</tattr>
+        <tattr name="ACCEL_YH_OUT" type="expr_hex" content="const" scope="task" min="0" max="65535">0x3D</tattr>
+        <tattr name="ACCEL_YL_OUT" type="expr_hex" content="const" scope="task" min="0" max="65535">0x3E</tattr>
+        <tattr name="ACCEL_ZH_OUT" type="expr_hex" content="const" scope="task" min="0" max="65535">0x3F</tattr>
+        <tattr name="ACCEL_ZL_OUT" type="expr_hex" content="const" scope="task" min="0" max="65535">0x40</tattr>
+        <tattr name="Board_MPU6050_ADDR" desc="MPU 6050 i2c address shifted 1 bit to the left" type="expr_hex" content="const" scope="task" min="0" max="65535">0xD0</tattr>
+        <tattr name="FILTER_BANDWIDTH_21HZ" type="expr_hex" content="const" scope="task" min="0" max="65535">0x04</tattr>
+        <tattr name="GYRO_RANGE_500" type="expr_hex" content="const" scope="task" min="0" max="65535">0x08</tattr>
+        <tattr name="GYRO_XH_OUT" type="expr_hex" content="const" scope="task" min="0" max="65535">0x43</tattr>
+        <tattr name="MPU6050_ACCEL_CONFIG" type="expr_hex" content="const" scope="task" min="0" max="65535">0x1C</tattr>
+        <tattr name="MPU6050_CONFIG" type="expr_hex" content="const" scope="task" min="0" max="65535">0x1A</tattr>
+        <tattr name="MPU6050_GYRO_CONFIG" type="expr_hex" content="const" scope="task" min="0" max="65535">0x1B</tattr>
+        <tattr name="MPU6050_PWR_MGMT_1" type="expr_hex" content="const" scope="task" min="0" max="65535">0x6B </tattr>
+        <tattr name="PWR_MGMT_1_RESET" type="expr_hex" content="const" scope="task" min="0" max="65535">0x40</tattr>
+        <tattr name="PWR_MGMT_1_WAKE" type="expr_hex" content="const" scope="task" min="0" max="65535">0x00</tattr>
+        <tattr name="SIGNAL_PATH_RESET" type="expr_hex" content="const" scope="task" min="0" max="65535">0x68</tattr>
+        <tattr name="SIGNAL_PATH_RESET_ALL" type="expr_hex" content="const" scope="task" min="0" max="65535">0x07</tattr>
+        <tattr name="output.gx" type="expr" content="struct" scope="task" min="-32768" max="32767">0</tattr>
+        <tattr name="output.gy" type="expr" content="struct" scope="task" min="-32768" max="32767">0</tattr>
+        <tattr name="output.gz" type="expr" content="struct" scope="task" min="-32768" max="32767">0</tattr>
+        <tattr name="output.x" type="expr" content="struct" scope="task" min="-32768" max="32767">0</tattr>
+        <tattr name="output.y" type="expr" content="struct" scope="task" min="-32768" max="32767">0</tattr>
+        <tattr name="output.z" type="expr" content="struct" scope="task" min="-32768" max="32767">0</tattr>
+        <resource_ref name="ADC" enabled="0"/>
+        <resource_ref name="AON Domain Functionality" enabled="0"/>
+        <resource_ref name="Accumulator-Based Math" enabled="0"/>
+        <resource_ref name="Analog Open-Drain Pins" enabled="0"/>
+        <resource_ref name="Analog Open-Source Pins" enabled="0"/>
+        <resource_ref name="Analog Pins" enabled="0"/>
+        <resource_ref name="COMPA" enabled="0"/>
+        <resource_ref name="COMPA Event Trigger" enabled="0"/>
+        <resource_ref name="COMPB" enabled="0"/>
+        <resource_ref name="COMPB Event Trigger" enabled="0"/>
+        <resource_ref name="Delay Insertion" enabled="1"/>
+        <resource_ref name="Differential Output Pins" enabled="0"/>
+        <resource_ref name="Digital Input Pins" enabled="0"/>
+        <resource_ref name="Digital Open-Drain Pins" enabled="0"/>
+        <resource_ref name="Digital Open-Source Pins" enabled="0"/>
+        <resource_ref name="Digital Output Pins" enabled="0"/>
+        <resource_ref name="Dynamic Power Control" enabled="0"/>
+        <resource_ref name="GPIO Event Trigger" enabled="0"/>
+        <resource_ref name="I2C Master" enabled="1">
+            <rattr name="SCL frequency">0</rattr>
+            <rattr name="SCL stretch timeout">1</rattr>
+            <io_usage>
+                <uattr name="Output drive strength">1</uattr>
+                <uattr name="SCL pin/0000">DIO4</uattr>
+                <uattr name="SDA pin/0000">DIO5</uattr>
+            </io_usage>
+        </resource_ref>
+        <resource_ref name="ISRC" enabled="0"/>
+        <resource_ref name="LCD Controller" enabled="0">
+            <rattr name="Waveform state count">8</rattr>
+            <io_usage>
+                <uattr name="Output drive strength">0</uattr>
+                <uattr name="Pin count">20</uattr>
+                <uattr name="Pin/0000"></uattr>
+                <uattr name="Pin/0001"></uattr>
+                <uattr name="Pin/0002"></uattr>
+                <uattr name="Pin/0003"></uattr>
+                <uattr name="Pin/0004"></uattr>
+                <uattr name="Pin/0005"></uattr>
+                <uattr name="Pin/0006"></uattr>
+                <uattr name="Pin/0007"></uattr>
+                <uattr name="Pin/0008"></uattr>
+                <uattr name="Pin/0009"></uattr>
+                <uattr name="Pin/0010"></uattr>
+                <uattr name="Pin/0011"></uattr>
+                <uattr name="Pin/0012"></uattr>
+                <uattr name="Pin/0013"></uattr>
+                <uattr name="Pin/0014"></uattr>
+                <uattr name="Pin/0015"></uattr>
+                <uattr name="Pin/0016"></uattr>
+                <uattr name="Pin/0017"></uattr>
+                <uattr name="Pin/0018"></uattr>
+                <uattr name="Pin/0019"></uattr>
+                <uattr name="Pin/0020"></uattr>
+                <uattr name="Pin/0021"></uattr>
+                <uattr name="Pin/0022"></uattr>
+                <uattr name="Pin/0023"></uattr>
+                <uattr name="Pin/0024"></uattr>
+                <uattr name="Pin/0025"></uattr>
+                <uattr name="Pin/0026"></uattr>
+                <uattr name="Pin/0027"></uattr>
+                <uattr name="Pin/0028"></uattr>
+                <uattr name="Pin/0029"></uattr>
+                <uattr name="Pin/0030"></uattr>
+                <uattr name="Pin/0031"></uattr>
+            </io_usage>
+        </resource_ref>
+        <resource_ref name="Math and Logic" enabled="1"/>
+        <resource_ref name="Multi-Buffered Output Data Exchange" enabled="0">
+            <rattr name="Buffer count">2</rattr>
+            <rattr name="Indicate overflow at buffer check">1</rattr>
+            <rattr name="Indicate overflow at buffer switch">0</rattr>
+            <rattr name="Prevent overflow at buffer switch">1</rattr>
+        </resource_ref>
+        <resource_ref name="Peripheral Sharing" enabled="0"/>
+        <resource_ref name="Pulse Counter" enabled="0"/>
+        <resource_ref name="RTC Multi-Event Capture" enabled="0"/>
+        <resource_ref name="RTC-Based Execution Scheduling" enabled="1"/>
+        <resource_ref name="Reference DAC" enabled="0"/>
+        <resource_ref name="Run-Time Logging" enabled="0"/>
+        <resource_ref name="SPI Chip Select" enabled="0"/>
+        <resource_ref name="SPI Data Transfer" enabled="0">
+            <rattr name="Bit rate">0</rattr>
+            <rattr name="MISO configuration when inactive">-1</rattr>
+            <rattr name="MOSI configuration on initialization">0</rattr>
+            <rattr name="MOSI configuration on uninitialization">0</rattr>
+            <rattr name="SCLK configuration on initialization">0</rattr>
+            <rattr name="SCLK configuration on uninitialization">0</rattr>
+            <io_usage>
+                <uattr name="MISO pin/0000"></uattr>
+                <uattr name="MOSI pin/0000"></uattr>
+                <uattr name="SCLK pin/0000"></uattr>
+            </io_usage>
+        </resource_ref>
+        <resource_ref name="Signal Observation" enabled="0"/>
+        <resource_ref name="System CPU Alert" enabled="1"/>
+        <resource_ref name="System Event Trigger" enabled="0"/>
+        <resource_ref name="TDC" enabled="0"/>
+        <resource_ref name="Timer 0" enabled="0"/>
+        <resource_ref name="Timer 0 Event Trigger" enabled="0"/>
+        <resource_ref name="Timer 1" enabled="0"/>
+        <resource_ref name="Timer 1 Event Trigger" enabled="0"/>
+        <resource_ref name="Timer 2" enabled="0"/>
+        <resource_ref name="Timer 2 Event Trigger" enabled="0"/>
+        <resource_ref name="UART Emulator" enabled="0">
+            <rattr name="RX buffer size">64</rattr>
+            <rattr name="Required idle period before enabling RX">11</rattr>
+            <rattr name="TX buffer size">64</rattr>
+            <io_usage>
+                <uattr name="RX pin/0000"></uattr>
+                <uattr name="TX pin/0000"></uattr>
+            </io_usage>
+        </resource_ref>
+        <sccode name="event0" init_power_mode="0"><![CDATA[]]></sccode>
+        <sccode name="event1" init_power_mode="0"><![CDATA[]]></sccode>
+        <sccode name="event2" init_power_mode="0"><![CDATA[]]></sccode>
+        <sccode name="event3" init_power_mode="0"><![CDATA[]]></sccode>
+        <sccode name="execute" init_power_mode="0"><![CDATA[// Read temperature and humidity in one operation using low-level I2C procedures, for reduced
+// current consumption. Compared to using 2 * i2cDeviceReadReg16LsbFirst(), this saves:
+// - 1 * i2cStart()
+// - 3 * i2cTx()
+// - 1 * i2cRepeatedStart()
+// - 1 * i2cStop()
+i2cStart();
+i2cTx(Board_MPU6050_ADDR | I2C_OP_WRITE);
+i2cTx(ACCEL_XH_OUT);
+
+// If successful so far ...
+if (state.i2cStatus == 0x0000) {
+    U16 XL;
+    U16 XH;
+    U16 YL;
+    U16 YH;
+    U16 ZL;
+    U16 ZH;
+
+
+    // Read temperature and humidity register values
+    i2cRepeatedStart();
+    i2cTx(Board_MPU6050_ADDR | I2C_OP_READ);
+    i2cRxAck(XH);
+    i2cRxAck(XL);
+    i2cRxAck(YH);
+    i2cRxAck(YL);
+    i2cRxAck(ZH);
+    i2cRxNack(ZL);
+    i2cStop();
+
+    // If successful ...
+    if (state.i2cStatus == 0x0000) {
+
+        // Calculate the temperature (6 fractional bits)
+        S16 X = (XH << 8) | XL;
+        S16 Y = (YH << 8) | YL;
+        S16 Z = (ZH << 8) | ZL;
+
+        output.x=X;
+        output.y=Y;
+        output.z=Z;
+
+
+    }
+
+
+}
+
+
+i2cStart();
+i2cTx(Board_MPU6050_ADDR | I2C_OP_WRITE);
+i2cTx(GYRO_XH_OUT);
+
+// If successful so far ...
+if (state.i2cStatus == 0x0000) {
+    U16 gXL;
+    U16 gXH;
+    U16 gYL;
+    U16 gYH;
+    U16 gZL;
+    U16 gZH;
+
+
+
+    // Read temperature and humidity register values
+    i2cRepeatedStart();
+    i2cTx(Board_MPU6050_ADDR | I2C_OP_READ);
+    i2cRxAck(gXH);
+    i2cRxAck(gXL);
+    i2cRxAck(gYH);
+    i2cRxAck(gYL);
+    i2cRxAck(gZH);
+    i2cRxNack(gZL);
+    i2cStop();
+
+    // If successful ...
+    if (state.i2cStatus == 0x0000) {
+
+        // Calculate the temperature (6 fractional bits)
+        S16 gX = (gXH << 8) | gXL;
+        S16 gY = (gYH << 8) | gYL;
+        S16 gZ = (gZH << 8) | gZL;
+
+        output.gx=gX;
+        output.gy=gY;
+        output.gz=gZ;
+
+
+    }
+
+
+}
+
+
+// If an I2C error occurred ...
+if (state.i2cStatus != 0x0000) {
+
+    // We're using a mix of low-level and high-level I2C procedures in this example, so
+    // clear errors in case the Termination Code runs next
+    state.i2cStatus = 0x1111;
+
+
+}
+
+
+// Schedule the next execution
+fwScheduleTask(1);]]></sccode>
+        <sccode name="initialize" init_power_mode="0"><![CDATA[i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_PWR_MGMT_1, PWR_MGMT_1_RESET);
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, SIGNAL_PATH_RESET, SIGNAL_PATH_RESET_ALL);
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_ACCEL_CONFIG, ACCEL_RANGE_8);
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_GYRO_CONFIG, GYRO_RANGE_500);
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_CONFIG, FILTER_BANDWIDTH_21HZ);
+i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_PWR_MGMT_1, PWR_MGMT_1_WAKE);
+fwScheduleTask(1);]]></sccode>
+        <sccode name="terminate" init_power_mode="0"><![CDATA[i2cDeviceWriteReg8(Board_MPU6050_ADDR, MPU6050_PWR_MGMT_1, PWR_MGMT_1_RESET);]]></sccode>
+        <event_trigger active_count="1">0,1,2,3</event_trigger>
+        <tt_iter>wait_100ms,run_execute</tt_iter>
+        <tt_struct>output.gx,output.gy,output.gz,output.x,output.y,output.z</tt_struct>
+        <rtl_struct></rtl_struct>
+        <rtl_task_sel en="1" struct_log_list="output"/>
+        <tt_child_graph name="" parent_struct_member="output.y" child_struct_member="output.y" parent_array_index="-1" child_array_index="-1" scaling_factor="1" scaling_offset="0"/>
+        <tt_child_graph name="" parent_struct_member="output.z" child_struct_member="output.z" parent_array_index="-1" child_array_index="-1" scaling_factor="1" scaling_offset="0"/>
+        <tt_child_graph name="" parent_struct_member="output.x" child_struct_member="output.x" parent_array_index="-1" child_array_index="-1" scaling_factor="1" scaling_offset="0"/>
+    </task>
+</project>
