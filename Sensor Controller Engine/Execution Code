@@ -1,0 +1,102 @@
+// Reads all the accelerometer and gyroscope result registers of MPU6050 in a single operation using I2C communication.
+i2cStart();
+i2cTx(Board_MPU6050_ADDR | I2C_OP_WRITE);//Tests I2C communication by accessing a result register
+i2cTx(ACCEL_XH_OUT);
+
+// If I2C communication has been successful in test
+if (state.i2cStatus == 0x0000) {
+    U16 XL;
+    U16 XH;
+    U16 YL;
+    U16 YH;
+    U16 ZL;
+    U16 ZH;
+    
+    
+    // Reads from each accelerometer result register consecutively
+    i2cRepeatedStart();
+    i2cTx(Board_MPU6050_ADDR | I2C_OP_READ);
+    i2cRxAck(XH);
+    i2cRxAck(XL);
+    i2cRxAck(YH);
+    i2cRxAck(YL);
+    i2cRxAck(ZH);
+    i2cRxNack(ZL);
+    i2cStop();
+    
+    // If successful ...
+    if (state.i2cStatus == 0x0000) {
+        
+        // Forms the full 16 bit 2's complement value for each axis
+        S16 X = (XH << 8) | XL;//bit shifts the high resgister values 8 bits to the left i.e.(----XH----)00000000
+        S16 Y = (YH << 8) | YL;//then XORs the low regsister value with the 0s to from full value
+        S16 Z = (ZH << 8) | ZL;
+        
+        output.x=X;//Writes full axis value to output buffer
+        output.y=Y;
+        output.z=Z;
+        
+        
+    }
+    
+    
+}
+
+// Start of gyroscope reads
+i2cStart();
+i2cTx(Board_MPU6050_ADDR | I2C_OP_WRITE);
+i2cTx(GYRO_XH_OUT);
+
+// If successful so far ...
+if (state.i2cStatus == 0x0000) {
+    U16 gXL;
+    U16 gXH;
+    U16 gYL;
+    U16 gYH;
+    U16 gZL;
+    U16 gZH;
+    
+    
+    
+    // Read each gyroscope result register consecutively
+    i2cRepeatedStart();
+    i2cTx(Board_MPU6050_ADDR | I2C_OP_READ);
+    i2cRxAck(gXH);
+    i2cRxAck(gXL);
+    i2cRxAck(gYH);
+    i2cRxAck(gYL);
+    i2cRxAck(gZH);
+    i2cRxNack(gZL);
+    i2cStop();
+    
+    if (state.i2cStatus == 0x0000) {
+        
+        // Calculate the temperature (6 fractional bits)
+        S16 gX = (gXH << 8) | gXL;
+        S16 gY = (gYH << 8) | gYL;
+        S16 gZ = (gZH << 8) | gZL;
+        
+        output.gx=gX;
+        output.gy=gY;
+        output.gz=gZ;
+        
+        
+    }
+    
+    
+}
+
+
+// If an I2C error occurred ...
+if (state.i2cStatus != 0x0000) {
+    
+    
+    // highlights if an i2c error has occured by setting all status bits high
+    state.i2cStatus = 0x1111;
+    
+    
+}
+
+
+// Schedule the next execution
+fwScheduleTask(1);
